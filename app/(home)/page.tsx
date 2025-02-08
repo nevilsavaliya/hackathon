@@ -1,328 +1,315 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Brain,
-  CheckCircle,
-  Code2,
-  Cpu,
-  GraduationCap,
-  MessageSquare,
-  Star,
-  Users,
-} from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-type Props = {};
+"use client"
 
-const page = (props: Props) => {
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { motion } from "framer-motion"
+import { Code2, Layout, Palette, Terminal, Database, Users } from "lucide-react"
+
+export default function Home() {
+  const topics = [
+    {
+      name: "Python",
+      description: "Learn programming fundamentals and problem-solving skills",
+      icon: Terminal,
+      gradient: "from-blue-500 to-cyan-500",
+    },
+    {
+      name: "HTML",
+      description: "Master the building blocks of web development",
+      icon: Layout,
+      gradient: "from-orange-500 to-pink-500",
+    },
+    {
+      name: "CSS",
+      description: "Style and design beautiful websites",
+      icon: Palette,
+      gradient: "from-purple-500 to-indigo-500",
+    },
+    {
+      name: "JavaScript",
+      description: "Create interactive and dynamic web applications",
+      icon: Code2,
+      gradient: "from-yellow-500 to-orange-500",
+    },
+    {
+      name: "SQL",
+      description: "Learn database management and queries",
+      icon: Database,
+      gradient: "from-green-500 to-emerald-500",
+    },
+  ]
+
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-3xl" />
-          <div className="absolute inset-0 bg-black/60" />
+      <section className="relative min-h-screen overflow-hidden px-4">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 opacity-30" />
+          <div className="absolute -top-48 left-0 h-96 w-96 rounded-full bg-purple-500/30 blur-3xl" />
+          <div className="absolute -bottom-48 right-0 h-96 w-96 rounded-full bg-cyan-500/30 blur-3xl" />
         </div>
-        <div className="container relative z-10 mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <Badge className="mb-4 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 transition-colors">
-              Enrollment Open
-            </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-              Master Artificial Intelligence
+
+        <div className="mx-auto max-w-7xl py-32">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <h1 className="mb-6 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-6xl font-bold tracking-tight text-transparent sm:text-7xl">
+              Start Your Coding Adventure
             </h1>
-            <p className="text-xl md:text-2xl text-gray-400 mb-8">
-              Learn to build, train, and deploy AI models with our comprehensive
-              course. From basics to advanced concepts.
+            <p className="mx-auto mb-8 max-w-2xl text-xl text-slate-400">
+              Embark on an interactive journey through programming. Learn, build, and connect with a global community of
+              developers.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                Enroll Now
-              </Button>
+            <div className="flex justify-center gap-4">
               <Button
                 size="lg"
-                variant="outline"
-                className="border-gray-700 hover:bg-gray-800"
+                className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white hover:from-purple-600 hover:to-cyan-600"
               >
+                Get Started Free
+              </Button>
+              <Button size="lg" variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800">
                 View Curriculum
               </Button>
             </div>
-            <div className="mt-12 flex items-center justify-center gap-8 text-sm text-gray-400">
-              <div className="flex items-center gap-2">
-                <Users className="h-4 w-4" />
-                <span>1000+ Students</span>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Topics Grid */}
+      <section className="mx-auto max-w-7xl px-4 py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-12 text-center"
+        >
+          <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl">Master Modern Technologies</h2>
+          <p className="mx-auto max-w-2xl text-slate-400">
+            Choose your path and start learning with our interactive curriculum designed for beginners and professionals
+            alike.
+          </p>
+        </motion.div>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {topics.map((topic, index) => {
+            const Icon = topic.icon
+            return (
+              <motion.div
+                key={topic.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="group relative overflow-hidden border-slate-800 bg-slate-900/50 backdrop-blur-sm transition-all hover:border-slate-700 hover:bg-slate-900/80">
+                  <div className="p-6">
+                    <div className={`mb-4 inline-block rounded-lg bg-gradient-to-r ${topic.gradient} p-3 text-white`}>
+                      <Icon className="size-6" />
+                    </div>
+                    <h3 className="mb-2 text-xl font-bold text-white">{topic.name}</h3>
+                    <p className="text-slate-400">{topic.description}</p>
+                  </div>
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent to-transparent opacity-0 transition-all group-hover:opacity-100" />
+                </Card>
+              </motion.div>
+            )
+          })}
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="relative overflow-hidden py-32">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-slate-950/90" />
+          <Image
+            src="/placeholder.svg?height=1080&width=1920"
+            alt="Background pattern"
+            fill
+            className="object-cover opacity-5"
+          />
+        </div>
+
+        <div className="mx-auto max-w-7xl px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-24 text-center"
+          >
+            <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl">Learn by Doing</h2>
+            <p className="mx-auto max-w-2xl text-slate-400">
+              Our interactive platform helps you master coding through hands-on practice and real-world projects.
+            </p>
+          </motion.div>
+
+          <div className="grid gap-16 md:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="flex flex-col justify-center"
+            >
+              <h3 className="mb-4 text-2xl font-bold text-white">Interactive Lessons</h3>
+              <p className="text-slate-400">
+                Write, run, and test code directly in your browser. Get instant feedback and learn from your mistakes.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="relative aspect-video overflow-hidden rounded-lg border border-slate-800 bg-slate-900"
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Code2 className="size-12 text-slate-700" />
               </div>
-              <div className="flex items-center gap-2">
-                <Star className="h-4 w-4" />
-                <span>4.9/5 Rating</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <GraduationCap className="h-4 w-4" />
-                <span>Certificate</span>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Community */}
+      <section className="py-32">
+        <div className="mx-auto max-w-7xl px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-16 text-center"
+          >
+            <div className="mb-4 flex justify-center">
+              <div className="rounded-full bg-purple-500/10 p-3 text-purple-400">
+                <Users className="size-6" />
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+            <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl">Join Our Community</h2>
+            <p className="mx-auto max-w-2xl text-slate-400">
+              Connect with fellow learners, share your progress, and get help when you need it.
+            </p>
+          </motion.div>
 
-      {/* Features Section */}
-      <section className="py-20 bg-gray-900">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            What You'll Learn
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-gray-800 border-gray-700">
-              <CardContent className="p-6">
-                <Brain className="h-12 w-12 mb-4 text-blue-400" />
-                <h3 className="text-xl font-bold mb-2">Neural Networks</h3>
-                <p className="text-gray-400">
-                  Understand the fundamentals of neural networks and deep
-                  learning architectures.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="bg-gray-800 border-gray-700">
-              <CardContent className="p-6">
-                <Code2 className="h-12 w-12 mb-4 text-purple-400" />
-                <h3 className="text-xl font-bold mb-2">Python & PyTorch</h3>
-                <p className="text-gray-400">
-                  Master the essential tools and frameworks used in AI
-                  development.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="bg-gray-800 border-gray-700">
-              <CardContent className="p-6">
-                <MessageSquare className="h-12 w-12 mb-4 text-green-400" />
-                <h3 className="text-xl font-bold mb-2">
-                  Natural Language Processing
-                </h3>
-                <p className="text-gray-400">
-                  Learn to process and analyze human language with AI models.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Choose Your Plan
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="bg-gray-800 border-gray-700">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-2">Basic</h3>
-                <div className="text-3xl font-bold mb-4">$299</div>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span>Core AI Concepts</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span>Basic Projects</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span>Community Access</span>
-                  </li>
-                </ul>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                  Get Started
-                </Button>
-              </CardContent>
-            </Card>
-            <Card className="bg-gray-800 border-gray-700 relative">
-              <CardContent className="p-6">
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500">
-                  Popular
-                </Badge>
-                <h3 className="text-xl font-bold mb-2">Pro</h3>
-                <div className="text-3xl font-bold mb-4">$499</div>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span>Everything in Basic</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span>Advanced Projects</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span>1-on-1 Mentoring</span>
-                  </li>
-                </ul>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                  Get Started
-                </Button>
-              </CardContent>
-            </Card>
-            <Card className="bg-gray-800 border-gray-700">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-2">Enterprise</h3>
-                <div className="text-3xl font-bold mb-4">$999</div>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span>Everything in Pro</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span>Custom Projects</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span>Priority Support</span>
-                  </li>
-                </ul>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                  Contact Us
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-20 bg-gray-900">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            What Our Students Say
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <Card key={i} className="bg-gray-800 border-gray-700">
-                <CardContent className="p-6">
-                  <div className="flex gap-1 mb-4">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star
-                        key={star}
-                        className="h-5 w-5 fill-yellow-400 text-yellow-400"
-                      />
-                    ))}
+          <div className="grid gap-8 md:grid-cols-3">
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="border-slate-800 bg-slate-900/50 backdrop-blur-sm">
+                  <div className="p-6">
+                    <div className="mb-4 text-sm text-slate-400">@username</div>
+                    <p className="text-slate-300">
+                      "The interactive lessons and supportive community helped me land my first developer job!"
+                    </p>
                   </div>
-                  <p className="text-gray-400 mb-4">
-                    "This course completely transformed my understanding of AI.
-                    The practical projects and mentorship were invaluable."
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <Image
-                      src="/placeholder.svg"
-                      alt="Student"
-                      width={48}
-                      height={48}
-                      className="rounded-full"
-                    />
-                    <div>
-                      <div className="font-bold">John Doe</div>
-                      <div className="text-sm text-gray-400">AI Developer</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Frequently Asked Questions
-          </h2>
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1" className="border-gray-800">
-              <AccordionTrigger className="text-left">
-                What prerequisites do I need?
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400">
-                Basic programming knowledge in Python and understanding of
-                mathematics (algebra, calculus) is recommended. We provide
-                preparatory materials for beginners.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2" className="border-gray-800">
-              <AccordionTrigger className="text-left">
-                How long does the course take to complete?
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400">
-                The course is self-paced but typically takes 12-16 weeks to
-                complete when dedicating 10-15 hours per week.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3" className="border-gray-800">
-              <AccordionTrigger className="text-left">
-                Is there a job guarantee?
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400">
-                While we don't guarantee job placement, we provide career
-                support, resume reviews, and interview preparation to help you
-                succeed in the AI industry.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+      {/* Stats */}
+      <section className="border-y border-slate-800 bg-slate-900/50 py-24 backdrop-blur-sm">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            {[
+              { value: "200k+", label: "Active Learners" },
+              { value: "192", label: "Countries" },
+              { value: "20M+", label: "Lines of Code" },
+              { value: "4.8/5", label: "User Rating" },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="mb-2 text-3xl font-bold text-white">{stat.value}</div>
+                <div className="text-sm text-slate-400">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600/20 to-purple-600/20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Start Your AI Journey?
-          </h2>
-          <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-            Join thousands of students who have transformed their careers with
-            our comprehensive AI course.
-          </p>
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-            Enroll Now
-          </Button>
+      {/* CTA */}
+      <section className="py-32">
+        <div className="mx-auto max-w-7xl px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-purple-500 to-cyan-500 p-8 md:p-12"
+          >
+            <div className="relative z-10 text-center">
+              <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl">Ready to Start Your Journey?</h2>
+              <p className="mx-auto mb-8 max-w-2xl text-purple-50/90">
+                Join thousands of learners who have transformed their careers through our platform.
+              </p>
+              <Button size="lg" className="bg-white text-purple-600 hover:bg-purple-50">
+                Get Started Free
+              </Button>
+            </div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent)]" />
+          </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="flex items-center gap-2">
-              <Cpu className="h-6 w-6 text-blue-400" />
-              <span className="font-bold text-xl">AI Course</span>
-            </div>
-            <div className="flex gap-8 text-gray-400">
-              <Link href="#" className="hover:text-white transition-colors">
-                Terms
-              </Link>
-              <Link href="#" className="hover:text-white transition-colors">
-                Privacy
-              </Link>
-              <Link href="#" className="hover:text-white transition-colors">
-                Contact
-              </Link>
-            </div>
-            <div className="text-gray-400">
-              © {new Date().getFullYear()} AI Course. All rights reserved.
-            </div>
+      <footer className="border-t border-slate-800 py-12">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="grid gap-8 md:grid-cols-4">
+            {[
+              {
+                title: "Product",
+                links: ["Features", "Pricing", "Learn"],
+              },
+              {
+                title: "Company",
+                links: ["About", "Blog", "Careers"],
+              },
+              {
+                title: "Resources",
+                links: ["Documentation", "Help Center", "Community"],
+              },
+              {
+                title: "Legal",
+                links: ["Privacy", "Terms", "Cookie Policy"],
+              },
+            ].map((section) => (
+              <div key={section.title}>
+                <h3 className="mb-4 font-bold text-white">{section.title}</h3>
+                <ul className="space-y-2">
+                  {section.links.map((link) => (
+                    <li key={link}>
+                      <a href="#" className="text-sm text-slate-400 hover:text-white">
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default page;

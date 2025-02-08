@@ -5,48 +5,30 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Background, courseimage2, courseimage3 } from "@/public/images/images";
+import AccordionDemo from "@/components/AccordianModule";
 
 export default function SingleCoursePage() {
   const pathname = usePathname();
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       {/* Banner Section */}
-      <section className="relative w-full h-72 bg-gradient-to-r from-indigo-500 to-blue-600">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-white text-4xl font-bold">Course Title</h1>
+      <section className="relative w-full h-72 flex items-center justify-center">
+        <h1 className="z-10 relative text-3xl">Hello How are you</h1>
+        <div className="absolute inset-0 flex items-center justify-center ">
+          <Image
+            src={courseimage3}
+            alt="Course Banner"
+            layout="fill"
+            objectFit="cover"
+          />
         </div>
+        {/* <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50"></div> */}
       </section>
 
       {/* Course Content Section */}
-      <div className="max-w-6xl mx-auto p-8">
-        <h2 className="text-2xl font-semibold mb-4">Course Tracks</h2>
-        <div className="space-y-6">
-          {Array.from({ length: 5 }).map((_, index) => (
-            <Card key={index} className="border border-gray-200">
-              <CardHeader>
-                <CardTitle>Track {index + 1}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  This is a brief description of what the track covers. It
-                  includes valuable insights and hands-on activities.
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Start Course Button */}
-        <div className="flex justify-center mt-8">
-          <Button className="px-6 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg text-lg">
-            <Link
-              className="flex items-center space-x-2"
-              href={`${pathname}/task`}
-            >
-              Start Course
-            </Link>
-          </Button>
-        </div>
+      <div className="px-4 py-8">
+        <AccordionDemo pathname={pathname} />
       </div>
     </div>
   );

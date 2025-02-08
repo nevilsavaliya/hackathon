@@ -1,44 +1,55 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import * as React from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  courseimage,
+  courseimage2,
+  courseimage3,
+  courseimage5,
+  Background,
+} from "@/public/images/images";
 
 const courses = [
   {
     id: 1,
     title: "Web Development Bootcamp",
     instructor: "Sarah Johnson",
-    image: "/placeholder.svg?height=200&width=400",
+    image: courseimage5,
     progress: 65,
   },
   {
     id: 2,
     title: "Machine Learning Fundamentals",
     instructor: "Dr. Michael Chen",
-    image: "/placeholder.svg?height=200&width=400",
+    image: courseimage2,
     progress: 30,
   },
   {
     id: 3,
     title: "UI/UX Design Principles",
     instructor: "Emma Thompson",
-    image: "/placeholder.svg?height=200&width=400",
+    image: courseimage3,
     progress: 85,
   },
-]
+];
 
 export function CourseCarousel() {
-  const [currentIndex, setCurrentIndex] = React.useState(0)
+  const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === courses.length - 1 ? 0 : prevIndex + 1))
-  }
+    setCurrentIndex((prevIndex) =>
+      prevIndex === courses.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? courses.length - 1 : prevIndex - 1))
-  }
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? courses.length - 1 : prevIndex - 1
+    );
+  };
 
   return (
     <div className="relative">
@@ -53,7 +64,7 @@ export function CourseCarousel() {
                 <CardContent className="p-0">
                   <div className="relative">
                     <img
-                      src={course.image || "/placeholder.svg"}
+                      src={course.image.src || "/placeholder.svg"}
                       alt={course.title}
                       className="h-[200px] w-full object-cover"
                     />
@@ -61,7 +72,10 @@ export function CourseCarousel() {
                       <h3 className="text-xl font-bold">{course.title}</h3>
                       <p className="text-sm">{course.instructor}</p>
                       <div className="mt-2 h-2 rounded-full bg-white/30">
-                        <div className="h-full rounded-full bg-primary" style={{ width: `${course.progress}%` }} />
+                        <div
+                          className="h-full rounded-full bg-primary"
+                          style={{ width: `${course.progress}%` }}
+                        />
                       </div>
                     </div>
                   </div>
@@ -88,6 +102,5 @@ export function CourseCarousel() {
         <ChevronRight className="h-4 w-4" />
       </Button>
     </div>
-  )
+  );
 }
-

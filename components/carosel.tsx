@@ -59,16 +59,16 @@ export function CarouselDemo() {
       <CarouselContent>
         {courses.map((data, index) => (
           <Link href={data.url} key={index}>
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex flex-col aspect-square items-center justify-center p-6">
-                  <CardTitle>{data.title}</CardTitle>
-                  <CardDescription>{data.duration}</CardDescription>
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
+            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
+              <div className="p-1">
+                <Card>
+                  <CardContent className="flex flex-col aspect-square items-center justify-center p-6">
+                    <CardTitle>{data.title}</CardTitle>
+                    <CardDescription>{data.duration}</CardDescription>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
           </Link>
         ))}
       </CarouselContent>

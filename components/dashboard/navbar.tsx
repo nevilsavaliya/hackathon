@@ -1,6 +1,6 @@
-import { Bell, Search } from "lucide-react"
+import { Bell, Search } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,13 +8,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function Navbar() {
   return (
-    <div className="border-b">
+    <div className="border-b relative z-20">
       <div className="flex h-16 items-center px-4">
         <div className="ml-auto flex items-center space-x-4">
           <div className="relative">
@@ -37,7 +37,9 @@ export function Navbar() {
               <DropdownMenuLabel className="font-normal">
                 <div className="flex flex-col space-y-1">
                   <p className="text-sm font-medium leading-none">John Doe</p>
-                  <p className="text-xs leading-none text-muted-foreground">john@example.com</p>
+                  <p className="text-xs leading-none text-muted-foreground">
+                    john@example.com
+                  </p>
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
@@ -49,6 +51,5 @@ export function Navbar() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
