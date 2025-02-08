@@ -22,10 +22,8 @@ const navItems = [
   { path: "/dashboard/courses", label: "Your Courses", icon: BookOpen },
   { path: "/dashboard/leaderboard", label: "Leaderboard", icon: Trophy },
   { path: "/dashboard/challenges", label: "Challenges", icon: BarChart },
-  { path: "/dashboard/all-courses", label: "All Courses", icon: GraduationCap },
   { path: "/dashboard/categories", label: "Categories", icon: List },
-  { path: "/dashboard/profile", label: "Instructors", icon: Users },
-  { path: "/settings", label: "Preferences", icon: Settings },
+  { path: "/dashboard/profile", label: "Profile", icon: Users },
 ];
 
 export function Sidebar({ className }: SidebarProps) {
